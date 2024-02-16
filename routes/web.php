@@ -18,5 +18,5 @@ Route::get('/', function () {
     return view('_template_back.layout');
 });
 
-// ROUTE BARU
+// ROUTE CRUD BUKU
 Route::resource('buku', BukuController::class);

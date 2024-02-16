@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buku;
 use Illuminate\Http\Request;
 
 class BukuController extends Controller
@@ -13,7 +14,8 @@ class BukuController extends Controller
      */
     public function index()
     {
-        return view('data_buku.index');
+        $buku = Buku::all();
+        return view('data_buku.index',compact('buku'));
     }
 
     /**
@@ -23,7 +25,7 @@ class BukuController extends Controller
      */
     public function create()
     {
-        //
+        return view('data_buku.form_create');
     }
 
     /**
@@ -34,7 +36,31 @@ class BukuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $request->validate(
+            [
+                'judul' => 'required',
+                'penulis' => 'required',
+                'penerbit' => 'required',
+                'tahun_terbit' => 'required|max:4',
+            ],
+            [
+                'judul.required' => 'judul wajib diisi',
+                'penulis.required' => 'penulis wajib diisi',
+                'penerbit.required' => 'penerbit wajib diisi',
+                'tahun_terbit.required' => 'tahun terbit wajib diisi',
+            ],
+        );
+
+        $data = [
+            'judul' => $request->judul,
+            'penulis' => $request->penulis,
+            'penerbit' => $request->penerbit,
+            'tahun_terbit' => $request->tahun_terbit,
+        ];
+
+        Buku::create($data);
+        return redirect()->route('buku.index')->with('success','Data Berhasil di Simpan');
     }
 
     /**

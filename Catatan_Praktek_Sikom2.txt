@@ -1,0 +1,86 @@
+menghilangkan tombol setting,buka file nevedeer slide 16 tutup sampe slide 48,
+di bagian atas bagian button copy 15-48 terus delete.
+balik lagi ke file neveder line 22 tilep line 34,di laine 22-40 di blok terus hapus.
+di line 20 bagian button sampai 23 di blok trus hapus,
+balik ke naveeder untuk menghapus fitur notif dan imail line 59 57 di tilep line 150 ditlep 59-132 blok terus hapus.
+line 56-61 di tutup terus hapus.
+58-145 blok terus hps.
+buka template azira terus buka di bagian pages 
+terus buka tables terus basic table cari simple teble 
+terus copy simples table buka infec page source cntrl-f terus cntrl-v dari line 636-739 copy 
+terus balik ke viscode buka data buku index no 4 hapus terus paste.
+line 107 di index atas comen div bikin </div> terus line 5 tutup lihat hasil di 127.0.0.1:8000/buku.
+menghilangkan grafik2 buka data buku di bagian index 
+cari div class di flex my auto line 15 tutup sampai line 44 tutup terus delete.
+membuat tombol create data buka index data buku cari line 27 copy terus hapus.
+line 24 simple table hapus aja sampai 25.terus bikin <a href="{{ route('buku.create') }}" clas="btn btn-primary">Tambah Data</a> lihat hasil.
+terus di dalam class card body tambah nt-3.
+di folder data buku bikin file form_create.blade.php 
+terus tambahkan copyan dari index data buku.
+terus di bagian line 28 table renponsip hapus sampai 71.masuk ke controller data buku no 26 return view('data_buku.from_create'); 
+masuk ke template azira masuk ke from cari yang from layout copy table ke 2 klik kanan page infec copy dari row sampai row 
+terus masuk ke from create terus line 19-33 blok terus hapus 
+terus paste dari template azira row-row.
+line 23 ganti jadi From Input Data Buku 
+terus line 25 ganti jadi harap untuk di isi semua input terus cek hasil.
+buat from action,masuk from create ganti fristcome jadi Judul buku" name="Judul" 
+terus scrol kebawah yang last name ganti dengan penulis" name="penulis",terus email ganti dengan penerbit name email ganti type jadi text.
+line 44 tilep sampai 51 blok terus alt shif bawah ganti jadi tahun terbit ganti type jadi number lihat hasil.
+balik ke from create button register jadi type=submit">simpan<.
+bawah  isi input form action route('buku.store') yang buttun action,bawah button censele </from>.
+masuk controler buku cari public function line 37 dd($request); lihat tampilan.
+masuk buku controler terus dd request komen//
+
+
+buka view new folder kasih nama componen bikin 1 file namanya pesan.blade.php
+di dalam pesan.blade.php paste copyan dari lara bahan ujikom bagian pesan.blade
+masuk ke databuku from.create untuk mengisi line 27.@include('_componen_pesan') 
+terus copy masuk ke data buku index line 27 paste.
+coba cansel masuk ke from create bagian censel dari class copy terus hapus
+terus ketik <a href="{{ route('buku.index') }}" class belakangnya ganti jadi back
+buka data buku index bawah tahun terbit tambah td 
+terus enter bikin <a href="{{ route('buku.edit',$dt->id)" class="btn btn-sm btn-warning">edit</a>
+buka controllerbuku cari funtion edit line 15 $dt = buku::find($id); bawahnya return view('data_buku.from_edit',compact('dt');
+bikin file di data buku from_edit.blade.php copykan dari from create.
+line 36 yang input class tambahkan value="{{ $dt->judul }}"
+di from edit ganti buku.store jadi buku.update
+di csrf kasih @method('PUT')
+masuk ke bukucontroller cari public punction store,
+copy dari $request sampai return redirect
+paste di bagian public function update.
+membuat fitur delete masuk ke index data buku
+slide 52 membuat <from action="" method="post">
+bawah buat button untuk delete
+arahin action ke route buku.destroy
+buka bukucontroller cari function destroy
+tambahkan Buku::find($id)->delete();
+dibawahnya return back()->with('succes','data berhasil dihapus');
+buka index di bagian from tambahkan from onsubmit return confirm
+buka template back masuk sidebar cari line 51 tambahkan class request is buku active
+href index.html ganti jadi buku.index
+membuat export pdf ketik "composer require barryvdh/laravel-dompdf" di terminal
+buat fitur login buat folder di view _template_auth
+terus bikin file layout.blade.php di dalam folder _template_auth
+buka template azira buka custom pages buka sig in klik kanan buka view cntrl a 
+terus copy,buka viscode pastekan di file layout di template auth
+cntrl-d beberapa kali hapus asset 
+line 45 bawah main-sigin-,line 45-78 cut blok wrapper
+buat folder di view "auth" bikin file "login.blade.php"
+tambahkan @extends('')arahkan ke template auth
+tambhan @section('content')
+file yang di cut tempel di bawah section.
+masuk web.php comen line 17
+buat rout login di line 21
+buat controller login "php artisan make:controller LoginController"
+tambahkan public function login(); di line 9
+line 11 return view('auth.login');
+buka web.php ketik route::get('/', [LoginController::class,'login'])->name('login');
+di atas use app\http\controller\login;
+lihat tampilan url nya tambah\login php artisan serve terlebih dahulu
+
+login
+login.blade.php
+database seeder
+logincontroller
+buka terminal php artisan db:seed
+

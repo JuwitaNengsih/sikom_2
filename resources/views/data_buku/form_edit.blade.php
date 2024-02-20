@@ -1,4 +1,5 @@
 @extends('_template_back.layout')
+
 @section('content')
 <!-- breadcrumb -->
 <div class="breadcrumb-header justify-content-between">
@@ -10,11 +11,10 @@
                 <li class="breadcrumb-item active" aria-current="page"> Basic Tables</li>
             </ol>
         </nav>
-    </div>
-    
+    </div>  
 </div>
 <!-- /breadcrumb -->
-<!-- row opened -->
+
 <!-- row -->
 <div class="row">
     <div class="col-lg-12 col-md-12">
@@ -27,7 +27,7 @@
                 @include('_component.pesan')
                 <div class="pd-30 pd-sm-40 bg-gray-100">
                     <form action="{{ route('buku.update',$dt->id)}}" method="post">
-                        @csrf @method('PUT')
+                        @csrf
                     <div class="row row-xs align-items-center mg-b-20">
                         <div class="col-md-4">
                             <label class="form-label mg-b-0">Judul Buku</label>
@@ -57,7 +57,7 @@
                             <label class="form-label mg-b-0">Tahun Terbit</label>
                         </div>
                         <div class="col-md-8 mg-t-5 mg-md-t-0">
-                            <input class="form-control"value="{{ $dt->tahun_terbit }}" placeholder="Enter your Tahun Terbit "name="tahun_  terbit" type="number">
+                            <input class="form-control"value="{{ $dt->tahun_terbit }}" placeholder="Enter your Tahun Terbit "name="tahun_terbit" type="number">
                         </div>
                     </div>
                     
@@ -70,5 +70,4 @@
     </div>
 </div>
 <!-- /row -->
-    <!--/div-->
-    @endsection
+@endsection

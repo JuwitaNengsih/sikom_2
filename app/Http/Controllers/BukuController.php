@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Buku;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
+
+use App\Export\DataBukuExportView;
 
 class BukuController extends Controller
 {
@@ -131,5 +135,35 @@ class BukuController extends Controller
     {
         Buku::find($id)->delete();
         return back()->with('success','Data berhasil di hapus');
+    }
+    public function export_pdf()
+    {
+        $data =Buku::orderBy('judul','asc');
+        $data =$data->get();
+
+        // Pass parameters to the export view
+        $pdf = PDF::loadview('data_buku.exportpdf', ['data'=>$data]);
+        $pdf->setPaper('a4','portrait');
+        $pdf->setOption(['dpi'=>150, 'defaultFont' => 'sans-serif']);
+        //set file name
+        $filename = date('YmdHis') . '_data_buku';
+        //download the pdf file
+        return $pdf->download($filename.'.pdf');
+    }
+
+    public function export_excel(Request $request)
+    {
+        //QUERY
+        $data =Buku::select('*');
+        $data =$data->get();
+
+        // Pass parameters to the export class
+        $export = new DataBukuExportView($data);
+
+        //set file name
+        $filename = date('YmdHis') . '_data_buku';
+
+        //download the excel file
+        return $excel::download($export, $filename . '.xlsx');
     }
 }

@@ -1,79 +1,73 @@
-<!-- Modal effects -->
-<div class="modal  fade" id="modaldemo8">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content modal-content-demo">
-            <div class="modal-header">
-                <h6 class="modal-title">Form Input Data Buku</h6><button aria-label="Close" class="btn-close"
-                    data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-                <p class="mg-b-20">Silahkan isi form di bawah ini dengan lengkap.</p>
-                <!-- message info -->
-                {{-- @include('_component.message') --}}
-                <div class="pd-10 pd-sm-20 bg-gray-100">
-                    <form action="{{ route('data_buku.store') }}" method="post">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="row row-xs align-items-center mg-b-20">
-                                            <div class="col-md-3">
-                                                <label class="form-label mg-b-0">Judul <span
-                                                        class="tx-danger">*</span></label>
-                                            </div>
-                                            <div class="col-md-9 mg-t-5 mg-md-t-0">
-                                                <input class="form-control" placeholder="Masukan Judul BUku"
-                                                    type="text" name="judul" value="{{ old('judul') }}" required>
-                                            </div>
-                                        </div>
-                                        <div class="row row-xs align-items-center mg-b-20">
-                                            <div class="col-md-3">
-                                                <label class="form-label mg-b-0">Penulis <span
-                                                        class="tx-danger">*</span> </label>
-                                            </div>
-                                            <div class="col-md-9 mg-t-5 mg-md-t-0">
-                                                <input class="form-control" placeholder="Masukan Penulis Buku"
-                                                    type="text" name="penulis" value="{{ old('penulis') }}">
-                                            </div>
-                                        </div>
-                                        <div class="row row-xs align-items-center mg-b-20">
-                                            <div class="col-md-3">
-                                                <label class="form-label mg-b-0">Penerbit <span
-                                                        class="tx-danger">*</span> </label>
-                                            </div>
-                                            <div class="col-md-9 mg-t-5 mg-md-t-0">
-                                                <input class="form-control " name='penerbit'
-                                                    placeholder="Masukan Penerbit Buku" type="text"
-                                                    value="{{ old('penerbit') }}">
-                                            </div>
-                                        </div>
-                                        <div class="row row-xs align-items-center mg-b-20">
-                                            <div class="col-md-3">
-                                                <label class="form-label mg-b-0">Tahun Terbit </label>
-                                            </div>
-                                            <div class="col-md-9 mg-t-5 mg-md-t-0">
-                                                <input id="year" class="form-control numberonly"
-                                                    name='tahun_terbit' placeholder="Masukan Tahun terbit Contoh (2020)"
-                                                    id="tahun" name="year" min="1900"
-                                                    max="{{ date('Y') }}" value="{{ old('tahun_terbit') }}">
-                                            </div>
-                                        </div>
-                                    </div>
+@extends('_template_back.layout')
 
-                                </div>
-                            </div>
+@section('content')
+    <!-- breadcrumb -->
+				<div class="breadcrumb-header justify-content-between">
+					<div>
+						<h4 class="content-title mb-2">Hi, welcome back!</h4>
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a   href="javascript:void(0);">Tables</a></li>
+								<li class="breadcrumb-item active" aria-current="page"> Basic Tables</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+				<!-- /breadcrumb -->
 
-                        </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn ripple btn-primary" type="submit"><i class='fa fa-save'></i> Simpan</button>
-                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button"> <i
-                        class='fa fa-chevron-left'></i> Kembali</button>
-            </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- End Modal effects-->
+				<!-- row -->
+				<div class="row">
+					<div class="col-lg-12 col-md-12">
+						<div class="card">
+							<div class="card-body">
+								<div class="main-content-label mg-b-5">
+									Form Input Data Buku
+								</div>
+								<p class="mg-b-20">Harap untuk mengisi semua input</p>
+								@include('_component.pesan')
+								<div class="pd-30 pd-sm-40 bg-gray-100">
+                                <form action="{{ route('buku.store') }}" method="post">
+                                    @csrf
+									<div class="row row-xs align-items-center mg-b-20">
+										<div class="col-md-4">
+											<label class="form-label mg-b-0">Judul Buku</label>
+										</div>
+										<div class="col-md-8 mg-t-5 mg-md-t-0">
+											<input class="form-control" placeholder="Enter your Judul Buku" name="judul" type="text">
+										</div>
+									</div>
+									<div class="row row-xs align-items-center mg-b-20">
+										<div class="col-md-4">
+											<label class="form-label mg-b-0">Penulis</label>
+										</div>
+										<div class="col-md-8 mg-t-5 mg-md-t-0">
+											<input class="form-control" placeholder="Enter your Penulis" name="penulis" type="text">
+										</div>
+									</div>
+									<div class="row row-xs align-items-center mg-b-20">
+										<div class="col-md-4">
+											<label class="form-label mg-b-0">Penerbit</label>
+										</div>
+										<div class="col-md-8 mg-t-5 mg-md-t-0">
+											<input class="form-control" placeholder="Enter your Penerbit" name="penerbit" type="text">
+										</div>
+									</div>
+									<div class="row row-xs align-items-center mg-b-20">
+										<div class="col-md-4">
+											<label class="form-label mg-b-0">Tahun Terbit</label>
+										</div>
+										<div class="col-md-8 mg-t-5 mg-md-t-0">
+											<input class="form-control" placeholder="Enter your Tahun Terbit" name="tahun_terbit" type="number">
+										</div>
+									</div>
+									<button class="btn btn-primary pd-x-30 mg-e-5 mg-t-5" type="submit">SIMPAN</button>
+									<a href="{{ route('buku.index') }}" class="btn btn-dark pd-x-30 mg-t-5"> << BACK </a>
+                                </form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /row -->
+
+@endsection

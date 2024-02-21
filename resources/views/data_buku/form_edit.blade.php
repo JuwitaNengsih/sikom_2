@@ -1,5 +1,4 @@
 @extends('_template_back.layout')
-
 @section('content')
 <!-- breadcrumb -->
 <div class="breadcrumb-header justify-content-between">
@@ -27,7 +26,7 @@
                 @include('_component.pesan')
                 <div class="pd-30 pd-sm-40 bg-gray-100">
                     <form action="{{ route('buku.update',$dt->id)}}" method="post">
-                        @csrf
+                        @csrf @method('PUT')
                     <div class="row row-xs align-items-center mg-b-20">
                         <div class="col-md-4">
                             <label class="form-label mg-b-0">Judul Buku</label>
@@ -62,7 +61,7 @@
                     </div>
                     
                     <button class="btn btn-primary pd-x-30 mg-e-5 mg-t-5" type="submit">Save</button>
-                    <a href="{{ route('buku.index')}}" class="btn btn-dark pd-x-30 mg-t-5"> << BACK</a>
+                    <a href="{{ route('buku.index')}}" class="btn btn-dark pd-x-30 mg-t-5"> << Back</a>
                 </form>
                 </div>
             </div>

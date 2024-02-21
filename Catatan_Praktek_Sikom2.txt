@@ -31,7 +31,6 @@ bawah  isi input form action route('buku.store') yang buttun action,bawah button
 masuk controler buku cari public function line 37 dd($request); lihat tampilan.
 masuk buku controler terus dd request komen//
 
-
 buka view new folder kasih nama componen bikin 1 file namanya pesan.blade.php
 di dalam pesan.blade.php paste copyan dari lara bahan ujikom bagian pesan.blade
 masuk ke databuku from.create untuk mengisi line 27.@include('_componen_pesan') 
@@ -77,10 +76,33 @@ line 11 return view('auth.login');
 buka web.php ketik route::get('/', [LoginController::class,'login'])->name('login');
 di atas use app\http\controller\login;
 lihat tampilan url nya tambah\login php artisan serve terlebih dahulu
-
-login
 login.blade.php
 database seeder
 logincontroller
 buka terminal php artisan db:seed
-
+export excel
+php artisan make:export DataBukuExportView --model=Buku di terminal
+buat flder export di app tambah file DataBukuExportView.php
+tambahkan use App\Exports\DataBukuExportView; di buku controller
+import excel
+buka template azira cari advanced UI,klik modals cari modal animatin copy klik kanan view page source
+control f pakai yang ratate bottom line 837
+masuk viscode bagian index data buku cari tombol export pdf
+paste ratate bottom di bawahnya
+line 12 primary jadi dark yg btn-blok hapus aja.
+teks rotate buttom ganti jadi import excel
+buka view source yg tadi 
+line 1022 modal effect blok sampe end modal effect copy.
+buka viscode bikin file baru modal_import.blade.php
+buka index data buku line 71 @include('data_buku.modal_import') (include=penyambung)
+buka impor data buku line 6 ganti jadi Import Excel Buku
+line 8 dan 9 di hapus
+di bawah form action tambahkan@scrf 
+line 43 bawah div simpan from
+ganti save change jadi save  ganti type jadi submit 
+masuk web.php bikin route import methodnya post
+di modal import line 5 tambahkan action mengarah ke route import_excel_buku
+masuk ke bukucontroller buat function baru dengan nama import excel memakai farameter request
+di export excel dari line 1-10 di komen
+buat database di phpmyadmin di sikom tabel peminjaman create dan update di ceklis
+status peminjaman string php artisan migrate:refresh

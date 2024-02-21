@@ -21,7 +21,7 @@
         }
     </style>
     <center>
-        <h4>DATA BU KU</h4>
+        <h4>DATA BUKU</h4>
         <p>Waktu Export : {{ date('d-m-Y H:i') }}</p> <!-- SET KAPAN USER EXPORT -->
     </center>
 

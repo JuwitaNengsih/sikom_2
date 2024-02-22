@@ -141,7 +141,7 @@ class BukuController extends Controller
         Buku::find($id)->delete();
         return back()->with('succes', 'Data Berhasil Di Hapus');
     }
-    public function export_pdf()//membuat pdf
+    public function export_pdf()//membuat export pdf
     {
         $data = Buku::orderBy('judul', 'asc');
         $data = $data->get();
@@ -152,20 +152,17 @@ class BukuController extends Controller
         $pdf->setOption(['dpi' => 150, 'defaultFont' => 'sans-serif']);
         //untuk memberi nama di file nya
         $filename = date('YmsdHis') . '_data_buku';
-        //untuk mendowload
+        // mendowload pdf
         return $pdf->download($filename.'.pdf');
     }
 
     public function export_excel(Request $request) 
     {
-        //query mengambil data dari data base
         $data = Buku::select('*');
         $data = $data->get();
 
-        //untuk mengakses yang sudah di dowload
         $export = new DataBukuExportView($data);
     
-        //untuk memberi nama di file
         $filename = date('YmdHis') . '_data_buku';
 
         //untuk mendowload

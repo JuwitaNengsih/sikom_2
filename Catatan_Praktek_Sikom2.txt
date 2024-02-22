@@ -105,4 +105,28 @@ di modal import line 5 tambahkan action mengarah ke route import_excel_buku
 masuk ke bukucontroller buat function baru dengan nama import excel memakai farameter request
 di export excel dari line 1-10 di komen
 buat database di phpmyadmin di sikom tabel peminjaman create dan update di ceklis
-status peminjaman string php artisan migrate:refresh
+status peminjaman string php artisan migrate:fresh
+
+membuat middleware
+buka terminal php artisan make:middleware Role
+buka filenya tambahkan 
+if array(in_array($request->user()->role, $role)) {
+            return $next($request);
+}
+return back()->with('info', 'Anda tidak diperbolehkan masuk ke halaman ini');
+}
+ 
+buka karnel 
+bikin route 
+'role' => \App\Http\Middleware\Role::class,
+
+masuk folder view 
+folder pesan 
+blok dari if sampai endif copy ke bawahnya
+yang kedua succesnya ganti jadi info.
+
+masuk ke index data buku
+cari export pdf buku
+
+  
+
